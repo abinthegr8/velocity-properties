@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 
+// Pages
+import Home from "./pages/Home";
+
 // Components
 import Navbar from "./components/Navbar";
 
@@ -75,7 +78,7 @@ export default function App() {
         <Navbar
           scrollToSection={(ref, name) => {
             scrollToSection(ref);
-            setActive(name); // immediate active update on click
+            setActive(name);
           }}
           sections={sections}
           active={active}
@@ -84,7 +87,9 @@ export default function App() {
 
       {/* Right Side */}
       <div className="w-[75%]">
-        <section ref={homeRef} className="w-full h-[300vh]"></section>
+        <section ref={homeRef} className="w-full h-[300vh]">
+          <Home />
+        </section>
         <section ref={privateLendingRef} className="w-full h-[300vh]"></section>
         <section ref={coLivingRef} className="w-full h-[300vh]"></section>
         <section ref={aboutRef} className="w-full h-[300vh]"></section>

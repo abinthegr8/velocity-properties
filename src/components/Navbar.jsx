@@ -20,7 +20,7 @@ export default function Navbar({ scrollToSection, sections, active }) {
               className={`[&_.description]:transition-all [&_.description]:ease-in-out [&_.description]:duration-500 ${
                 active === name
                   ? "[&_.description]:opacity-100"
-                  : "[&_.description]:opacity-50"
+                  : "[&_.description]:opacity-25"
               }`}
             >
               <ContentBlock
@@ -34,7 +34,7 @@ export default function Navbar({ scrollToSection, sections, active }) {
 
       <div className="w-full flex flex-col gap-[10px]">
         <ContentText description="Interested in working with us or booking a consultation? Let’s connect." />
-        <Button href="#" title="Contact Us" />
+        <Button href="#" title="TALK WITH AN ADVISOR" />
       </div>
     </div>
   );

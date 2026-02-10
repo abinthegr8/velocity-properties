@@ -5,10 +5,11 @@ export default {
       colors: {
         black: "#0c0b0b",
         white: "#faf8f0",
-        yellow: "#a39c81",
+        yellow: "#aea97c",
       },
       fontFamily: {
         zalando: "Zalando Sans",
+        instrument: "Instrument Sans",
       },
     },
   },
