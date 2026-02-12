@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 
 // Pages
 import Home from "./pages/Home";
+import PrivateLending from "./pages/PrivateLending";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -86,11 +87,13 @@ export default function App() {
       </div>
 
       {/* Right Side */}
-      <div className="w-[75%]">
-        <section ref={homeRef} className="w-full h-[300vh]">
+      <div className="w-[75%] overflow-x-scroll no-scrollbar">
+        <section ref={homeRef} className="w-full h-[280vh]">
           <Home />
         </section>
-        <section ref={privateLendingRef} className="w-full h-[300vh]"></section>
+        <section ref={privateLendingRef} className="w-full h-[85vh]">
+          <PrivateLending />
+        </section>
         <section ref={coLivingRef} className="w-full h-[300vh]"></section>
         <section ref={aboutRef} className="w-full h-[300vh]"></section>
       </div>

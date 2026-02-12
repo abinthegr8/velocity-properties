@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { BsArrowReturnRight } from "react-icons/bs";
 import { gsap } from "gsap";
 
 // Components
 import ContentBlock from "../components/ContentBlock";
+
+// Icons
+import { BsArrowReturnRight } from "react-icons/bs";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 export default function Home() {
   const testimonials = [
@@ -57,6 +60,11 @@ export default function Home() {
     }
   };
 
+  // ------------------------------
+  // Initial animation setup on mount
+  // Sets all circles, titles, and categories to their default states
+  // Highlights the first active card (activeIndex = 0)
+  // ------------------------------
   useEffect(() => {
     circleRefs.current.forEach((circle, i) => {
       const radius = circle.r.baseVal.value;
@@ -99,6 +107,11 @@ export default function Home() {
     });
   }, []);
 
+  // ------------------------------
+  // Handles animations when a user clicks a testimonial card
+  // Fades out the current testimonial, updates activeIndex,
+  // then animates circles, titles, and categories accordingly
+  // ------------------------------
   const handleCardClick = (index) => {
     if (index === activeIndex) return;
 
@@ -174,7 +187,7 @@ export default function Home() {
   return (
     <div className="w-full h-full py-[45px] px-[50px]">
       {/* Overview */}
-      <div className="w-full h-[33.33%] flex border-b border-opacity-30 border-yellow">
+      <div className="w-full h-[33.33%] flex border-b border-opacity-30 border-yellow px-[50px]">
         <div className="w-[70%] h-full"></div>
         <div className="w-[30%] h-full">
           <ContentBlock
@@ -265,7 +278,7 @@ export default function Home() {
                 onClick={() => handleCardClick(index)}
               >
                 <div className="w-full flex items-center justify-center">
-                  <div className="w-[75%] h-[80%]">
+                  <div className="w-[75%] h-[75%]">
                     <div className="w-full font-semibold text-[1.15rem] leading-[1.75rem] text-black opacity-100">
                       {testimonial.name}
                     </div>
@@ -322,17 +335,45 @@ export default function Home() {
             );
           })}
         </div>
-        <div className="w-full flex justify-center">
-          <div className="w-24 py-1 bg-[#e5e5e5] flex justify-around items-center rounded-full">
-            {[0, 1, 2].map((i) => (
+        <div className="w-full h-[5%] flex justify-center">
+          <div className="w-96 grid place-items-center relative">
+            <div className="w-16 py-1 flex justify-around items-center rounded-full">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className={`h-1 rounded-full bg-black/50 cursor-pointer transition-all ease-in-out duration-300 ${
+                    activeIndex === i
+                      ? "w-1.5 h-1.5 bg-transparent border-2 border-yellow rounded-full"
+                      : "w-1"
+                  }`}
+                  onClick={() => handleCardClick(i)}
+                />
+              ))}
               <div
-                key={i}
-                className={`h-2 rounded-full bg-yellow cursor-pointer transition-all ease-in-out duration-300 ${
-                  activeIndex === i ? "w-10" : "w-2"
-                }`}
-                onClick={() => handleCardClick(i)}
-              />
-            ))}
+                onClick={() => {
+                  const prevIndex =
+                    activeIndex === 0
+                      ? testimonials.length - 1
+                      : activeIndex - 1;
+                  handleCardClick(prevIndex);
+                }}
+                className="absolute right-full text-[1.5em] text-yellow cursor-pointer opacity-80"
+              >
+                <MdKeyboardArrowLeft />
+              </div>
+              <div
+                onClick={() => {
+                  const nextIndex =
+                    activeIndex === testimonials.length - 1
+                      ? 0
+                      : activeIndex + 1;
+                  handleCardClick(nextIndex);
+                }}
+                className="absolute left-full text-[1.5rem] text-yellow cursor-pointer opacity-80"
+              >
+                <MdKeyboardArrowRight />
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 // Components
 import ContentBlock from "./ContentBlock";
-import ContentText from "./ContentText";
 import Button from "./Button";
 
 export default function Navbar({ scrollToSection, sections, active }) {
   const descriptions = {
     home: "Overview · What Sets Us Apart · Testimonials",
-    privateLending: "What Is Private Lending · Becoming A Private Money Lender",
+    privateLending:
+      "What Is Private Lending · Becoming A Private Money Lender · Why Consider Alternatives to the Stock Market?",
     coLiving: "What Is Co-Living · The 4Fs · Our Co-Living Approach",
     about: "Who We Are · Our Works",
   };
@@ -33,7 +33,7 @@ export default function Navbar({ scrollToSection, sections, active }) {
       </div>
 
       <div className="w-full flex flex-col gap-[10px]">
-        <ContentText description="Interested in working with us or booking a consultation? Let’s connect." />
+        <ContentBlock description="Interested in working with us or booking a consultation? Let’s connect." />
         <Button href="#" title="TALK WITH AN ADVISOR" />
       </div>
     </div>
